@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .chat-container {
+            width: 320px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            padding: 10px;
+        }
+
+        .chat-box {
+            height: 250px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .user {
+            text-align: right;
+            color: blue;
+        }
+
+        .bot {
+            text-align: left;
+            color: green;
+        }
+
+        input {
+            width: 70%;
+            padding: 6px;
+        }
+
+        button {
+            padding: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <h3>My Chatbot</h3>
+    <div class="chat-box" id="chatBox"></div>
+
+    <input type="text" id="userInput" placeholder="Type a message...">
+    <button onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+function sendMessage() {
+    let input = document.getElementById("userInput").value;
+    let chatBox = document.getElementById("chatBox");
+
+    if(input === "") return;
+
+    chatBox.innerHTML += "<p class='user'><b>You:</b> " + input + "</p>";
+
+    let reply = getBotReply(input.toLowerCase());
+
+    chatBox.innerHTML += "<p class='bot'><b>Bot:</b> " + reply + "</p>";
+
+    document.getElementById("userInput").value = "";
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotReply(message) {
+    if(message.includes("hello")) {
+        return "Hi there! 👋";
+    }
+    else if(message.includes("how are you")) {
+        return "I am fine! 😊";
+    }
+    else if(message.includes("your name")) {
+        return "I am your simple website chatbot!";
+    }
+    else if(message.includes("bye")) {
+        return "Goodbye! 👋";
+    }
+    else {
+        return "Sorry, I don't understand that.";
+    }
+}
+</script>
+
+</body> 
+  <!--Tab to edit-->
+
+</html>
